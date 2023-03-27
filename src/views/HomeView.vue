@@ -18,11 +18,7 @@
   </div>
 </template>
 
-<script setup>
-import { useCounterStore } from '@/stores/counter'
-
-const counter = useCounterStore()
-</script>
+<script setup></script>
 <style>
 .count {
   font-size: 70px;
