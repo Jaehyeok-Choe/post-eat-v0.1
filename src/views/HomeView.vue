@@ -14,4 +14,6 @@
   font-size: 30px;
   text-align: center;
 }
+.home {
+}
 </style>
