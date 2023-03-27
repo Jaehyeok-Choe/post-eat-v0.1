@@ -1,19 +1,20 @@
 <template>
   <v-app>
+    <AppbarView />
     <v-main>
-      <div class="app">
-        <router-link :to="{ name: 'home' }">Home</router-link> |
-        <router-link :to="{ name: 'about' }">About</router-link>
-      </div>
       <RouterView />
     </v-main>
+    <BottomView />
   </v-app>
 </template>
 
-<script></script>
-<style>
-.app {
-  font-size: 50px;
-  text-align: center;
+<script>
+import AppbarView from './views/AppbarView.vue'
+import BottomView from './views/BottomView.vue'
+
+export default {
+  data: () => ({ value: 1 }),
+  components: { BottomView, AppbarView }
 }
-</style>
+</script>
+<style></style>
