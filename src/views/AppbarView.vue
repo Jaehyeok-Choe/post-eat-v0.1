@@ -6,9 +6,9 @@
       </template>
 
       <template v-slot:prepend> </template>
-
-      <v-app-bar-title><v-icon>mdi-post</v-icon> PostEAT</v-app-bar-title>
-
+      <div class="appbar-name">
+        <v-app-bar-title><v-icon>mdi-post</v-icon> PostEAT</v-app-bar-title>
+      </div>
       <v-spacer></v-spacer>
 
       <v-btn icon>
@@ -20,4 +20,15 @@
 
 <script setup></script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+@font-face {
+  font-family: 'OAGothic-ExtraBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/OAGothic-ExtraBold.woff2')
+    format('woff2');
+  font-weight: 800;
+  font-style: normal;
+}
+.appbar-name {
+  font-family: 'OAGothic-ExtraBold';
+}
+</style>
