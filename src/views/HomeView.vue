@@ -6,6 +6,9 @@
 
 <script setup></script>
 <style>
+.home {
+  text-align: center;
+}
 .count {
   font-size: 70px;
   text-align: center;
