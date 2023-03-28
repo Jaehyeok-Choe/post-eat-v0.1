@@ -4,8 +4,8 @@
     <v-main>
       <RouterView />
     </v-main>
-    <BottomView />
   </v-app>
+  <BottomView />
 </template>
 
 <script>
