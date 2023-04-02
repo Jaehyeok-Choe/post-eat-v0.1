@@ -2,7 +2,7 @@
   <div class="bottomNav">
     <v-layout class="overflow-visible" style="height: 56px">
       <v-bottom-navigation v-model="value" color="teal" grow>
-        <v-btn :to="{ name: 'home' }">
+        <v-btn :to="{ name: 'restaurant' }">
           <v-icon>mdi-map</v-icon>
 
           맛집
