@@ -23,7 +23,7 @@
           <v-chip class="ma-2" color="green" text-color="white">
             {{ restaurants.category }}
           </v-chip>
-          / {{ restaurants.distance }}km
+          / {{ restaurants.distance }}km / {{ restaurants.contactNumber }}
         </div>
         <div v-else-if="restaurants.category === '일식'">
           <v-chip class="ma-2" color="blue" text-color="white">

@@ -4,27 +4,30 @@
       <v-bottom-navigation v-model="value" color="teal" grow>
         <v-btn :to="{ name: 'restaurant' }">
           <v-icon>mdi-map</v-icon>
-
           맛집
         </v-btn>
-
-        <v-btn :to="{ name: 'about' }">
+        <v-btn :to="{ name: 'menu' }">
           <v-icon>mdi-rice</v-icon>
-
           식단
         </v-btn>
-
         <v-btn :to="{ name: 'cafe' }">
           <v-icon>mdi-coffee</v-icon>
-
           카페
+        </v-btn>
+        <v-btn :to="{ name: 'admin' }" v-if="adminYn">
+          <v-icon>mdi-cog</v-icon>
+          관리자
         </v-btn>
       </v-bottom-navigation>
     </v-layout>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+// admin test
+const adminYn = ref(false)
+</script>
 
 <style scoped>
 @font-face {

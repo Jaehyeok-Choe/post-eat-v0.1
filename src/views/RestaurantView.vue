@@ -6,7 +6,8 @@
         name: restaurant.name,
         distance: restaurant.distance,
         more: restaurant.more,
-        category: restaurant.category
+        category: restaurant.category,
+        contactNumber: restaurant.contactNumber
       }"
     />
   </div>
