@@ -16,7 +16,7 @@
         </v-btn>
         <v-btn :to="{ name: 'admin' }" v-if="adminYn">
           <v-icon>mdi-cog</v-icon>
-          관리자
+          관리
         </v-btn>
       </v-bottom-navigation>
     </v-layout>
@@ -26,7 +26,7 @@
 <script setup>
 import { ref } from 'vue'
 // admin test
-const adminYn = ref(false)
+const adminYn = ref(true)
 </script>
 
 <style scoped>

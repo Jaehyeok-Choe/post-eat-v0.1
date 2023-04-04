@@ -31,7 +31,8 @@ onMounted(async () => {
       name: doc.data().name,
       distance: doc.data().distance,
       category: doc.data().category,
-      more: doc.data().more
+      more: doc.data().more,
+      contactNumber: doc.data().contactNumber
     }
     fbRestaurant.push(restaurant)
   })

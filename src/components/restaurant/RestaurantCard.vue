@@ -1,7 +1,7 @@
 <template>
   <div class="restaurantCard">
     <v-card class="mx-auto ma-10" max-width="344">
-      <v-carousel show-arrows="hover" height="250">
+      <v-carousel show-arrows="hover" height="200">
         <v-carousel-item
           src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
           cover
@@ -19,34 +19,38 @@
       <v-card-title> {{ restaurants.name }} </v-card-title>
 
       <v-card-subtitle>
-        <div v-if="restaurants.category === '한식'">
-          <v-chip class="ma-2" color="green" text-color="white">
-            {{ restaurants.category }}
-          </v-chip>
-          / {{ restaurants.distance }}km / {{ restaurants.contactNumber }}
-        </div>
-        <div v-else-if="restaurants.category === '일식'">
-          <v-chip class="ma-2" color="blue" text-color="white">
-            {{ restaurants.category }}
-          </v-chip>
-          / {{ restaurants.distance }}km
-        </div>
-        <div v-else-if="restaurants.category === '중식'">
-          <v-chip class="ma-2" color="yellow" text-color="white">
-            {{ restaurants.category }}
-          </v-chip>
-          / {{ restaurants.distance }}km
-        </div>
-        <div v-else-if="restaurants.category === '카페'">
-          <v-chip class="ma-2" color="brown" text-color="white">
-            {{ restaurants.category }}
-          </v-chip>
-          / {{ restaurants.distance }}km
-        </div>
+        <!-- <div v-if="restaurants.category === '한식'"> -->
+        <v-chip class="ma-2" color="red" text-color="white">
+          {{ restaurants.category }}
+        </v-chip>
+        / <v-icon>mdi-map-marker-distance</v-icon> {{ restaurants.distance }}km /
+        <v-icon>mdi-phone</v-icon> &nbsp;<a href="tel:">{{ restaurants.contactNumber }}</a>
+        <!-- </div> -->
+        <!-- <div v-else-if="restaurants.category === '일식'"> -->
+        <!-- <v-chip class="ma-2" color="blue" text-color="white">
+          {{ restaurants.category }}
+        </v-chip>
+        / <v-icon>mdi-map-marker-distance</v-icon>{{ restaurants.distance }}km /
+        <v-icon>mdi-phone</v-icon> &nbsp;<a href="tel:">{{ restaurants.contactNumber }}</a> -->
+        <!-- </div> -->
+        <!-- <div v-else-if="restaurants.category === '중식'"> -->
+        <!-- <v-chip class="ma-2" color="yellow" text-color="white">
+          {{ restaurants.category }}
+        </v-chip>
+        / <v-icon>mdi-map-marker-distance</v-icon>{{ restaurants.distance }}km /
+        <v-icon>mdi-phone</v-icon> &nbsp;<a href="tel:">{{ restaurants.contactNumber }}</a> -->
+        <!-- </div> -->
+        <!-- <div v-else-if="restaurants.category === '카페'"> -->
+        <!-- <v-chip class="ma-2" color="brown" text-color="white">
+          {{ restaurants.category }}
+        </v-chip>
+        / <v-icon>mdi-map-marker-distance</v-icon>{{ restaurants.distance }}km /
+        <v-icon>mdi-phone</v-icon> &nbsp;<a href="tel:">{{ restaurants.contactNumber }}</a> -->
+        <!-- </div> -->
       </v-card-subtitle>
 
       <v-card-actions>
-        <v-btn color="orange-lighten-2" variant="text"> More </v-btn>
+        <v-btn color="orange-lighten-2" variant="text" @click="show = !show"> More </v-btn>
 
         <v-spacer></v-spacer>
 
@@ -68,22 +72,25 @@ import { ref } from 'vue'
 
 const show = ref(false)
 const testDate = ref(Math.round(Date.now() / 1000))
+const color = ref('')
 console.log(testDate)
 
 defineProps({
   restaurants: {}
 })
+
+console.log('################')
 </script>
 <style>
 @font-face {
-  font-family: 'OAGothic-ExtraBold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/OAGothic-ExtraBold.woff2')
+  font-family: 'KimjungchulGothic-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/KimjungchulGothic-Bold.woff2')
     format('woff2');
-  font-weight: 800;
+  font-weight: 700;
   font-style: normal;
 }
 
 .restaurantCard {
-  font-family: 'OAGothic-ExtraBold';
+  font-family: 'KimjungchulGothic-Bold';
 }
 </style>

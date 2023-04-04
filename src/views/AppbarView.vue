@@ -10,10 +10,6 @@
         <v-app-bar-title><v-icon>mdi-post</v-icon> PostEAT</v-app-bar-title>
       </div>
       <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      </v-btn>
     </v-app-bar>
   </div>
 </template>
