@@ -19,34 +19,28 @@
       <v-card-title> {{ restaurants.name }} </v-card-title>
 
       <v-card-subtitle>
-        <!-- <div v-if="restaurants.category === '한식'"> -->
-        <v-chip class="ma-2" color="red" text-color="white">
-          {{ restaurants.category }}
-        </v-chip>
-        / <v-icon>mdi-map-marker-distance</v-icon> {{ restaurants.distance }}km /
-        <v-icon>mdi-phone</v-icon> &nbsp;<a href="tel:">{{ restaurants.contactNumber }}</a>
-        <!-- </div> -->
-        <!-- <div v-else-if="restaurants.category === '일식'"> -->
-        <!-- <v-chip class="ma-2" color="blue" text-color="white">
-          {{ restaurants.category }}
-        </v-chip>
-        / <v-icon>mdi-map-marker-distance</v-icon>{{ restaurants.distance }}km /
-        <v-icon>mdi-phone</v-icon> &nbsp;<a href="tel:">{{ restaurants.contactNumber }}</a> -->
-        <!-- </div> -->
-        <!-- <div v-else-if="restaurants.category === '중식'"> -->
-        <!-- <v-chip class="ma-2" color="yellow" text-color="white">
-          {{ restaurants.category }}
-        </v-chip>
-        / <v-icon>mdi-map-marker-distance</v-icon>{{ restaurants.distance }}km /
-        <v-icon>mdi-phone</v-icon> &nbsp;<a href="tel:">{{ restaurants.contactNumber }}</a> -->
-        <!-- </div> -->
-        <!-- <div v-else-if="restaurants.category === '카페'"> -->
-        <!-- <v-chip class="ma-2" color="brown" text-color="white">
-          {{ restaurants.category }}
-        </v-chip>
-        / <v-icon>mdi-map-marker-distance</v-icon>{{ restaurants.distance }}km /
-        <v-icon>mdi-phone</v-icon> &nbsp;<a href="tel:">{{ restaurants.contactNumber }}</a> -->
-        <!-- </div> -->
+        <div v-if="restaurants.category === '한식'" style="float: right">
+          <v-chip class="ma-2" color="green" text-color="white">
+            {{ restaurants.category }}
+          </v-chip>
+        </div>
+        <div v-else-if="restaurants.category === '일식'" style="float: right">
+          <v-chip class="ma-2" color="blue" text-color="white">
+            {{ restaurants.category }}
+          </v-chip>
+        </div>
+        <div v-else-if="restaurants.category === '중식'" style="float: right">
+          <v-chip class="ma-2" color="red" text-color="white">
+            {{ restaurants.category }}
+          </v-chip>
+        </div>
+        <div v-else-if="restaurants.category === '카페'" style="float: right">
+          <v-chip class="ma-2" color="brown" text-color="white">
+            {{ restaurants.category }}
+          </v-chip>
+        </div>
+        <v-icon>mdi-map-marker-distance</v-icon> {{ restaurants.distance }}km &nbsp;&nbsp;
+        <v-icon>mdi-phone</v-icon> <a href="tel:">{{ restaurants.contactNumber }}</a>
       </v-card-subtitle>
 
       <v-card-actions>
@@ -61,7 +55,9 @@
         <div v-show="show">
           <v-divider></v-divider>
 
-          <v-card-text> {{ restaurants.more }}</v-card-text>
+          <v-card-text
+            >마감시간 - {{ restaurants.closeTime }}:00 <br />{{ restaurants.more }}</v-card-text
+          >
         </div>
       </v-expand-transition>
     </v-card>
@@ -72,7 +68,7 @@ import { ref } from 'vue'
 
 const show = ref(false)
 const testDate = ref(Math.round(Date.now() / 1000))
-const color = ref('')
+
 console.log(testDate)
 
 defineProps({

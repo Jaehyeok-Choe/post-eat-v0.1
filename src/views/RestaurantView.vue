@@ -7,7 +7,8 @@
         distance: restaurant.distance,
         more: restaurant.more,
         category: restaurant.category,
-        contactNumber: restaurant.contactNumber
+        contactNumber: restaurant.contactNumber,
+        closeTime: restaurant.closeTime
       }"
     />
   </div>
@@ -32,7 +33,8 @@ onMounted(async () => {
       distance: doc.data().distance,
       category: doc.data().category,
       more: doc.data().more,
-      contactNumber: doc.data().contactNumber
+      contactNumber: doc.data().contactNumber,
+      closeTime: doc.data().closeTime
     }
     fbRestaurant.push(restaurant)
   })
