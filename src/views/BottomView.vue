@@ -2,13 +2,13 @@
   <div class="bottomNav">
     <v-layout class="overflow-visible" style="height: 56px">
       <v-bottom-navigation v-model="value" color="teal" grow>
-        <v-btn :to="{ name: 'restaurant' }">
-          <v-icon>mdi-map</v-icon>
-          맛집
-        </v-btn>
         <v-btn :to="{ name: 'menu' }">
           <v-icon>mdi-rice</v-icon>
           식단
+        </v-btn>
+        <v-btn :to="{ name: 'complaintbox' }">
+          <v-icon>mdi-map</v-icon>
+          CB
         </v-btn>
         <v-btn :to="{ name: 'cafe' }">
           <v-icon>mdi-coffee</v-icon>
