@@ -1,6 +1,6 @@
 <template>
   <div class="cafe">
-    <h1>This is 카페 view page!</h1>
+    <h1>Cafe</h1>
   </div>
 </template>
 
