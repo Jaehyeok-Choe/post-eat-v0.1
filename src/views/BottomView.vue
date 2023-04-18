@@ -4,19 +4,19 @@
       <v-bottom-navigation v-model="value" color="teal" grow>
         <v-btn :to="{ name: 'menu' }">
           <v-icon>mdi-rice</v-icon>
-          식단
+          식단표
         </v-btn>
         <v-btn :to="{ name: 'complaintbox' }">
-          <v-icon>mdi-map</v-icon>
-          CB
+          <v-icon>mdi-bullhorn</v-icon>
+          대나무숲
         </v-btn>
         <v-btn :to="{ name: 'cafe' }">
           <v-icon>mdi-coffee</v-icon>
-          카페
+          일층카페
         </v-btn>
         <v-btn :to="{ name: 'admin' }" v-if="adminYn">
           <v-icon>mdi-cog</v-icon>
-          관리
+          관리자만
         </v-btn>
       </v-bottom-navigation>
     </v-layout>
