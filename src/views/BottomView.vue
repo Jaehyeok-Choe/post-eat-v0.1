@@ -2,7 +2,7 @@
   <div class="bottomNav">
     <v-layout class="overflow-visible" style="height: 56px">
       <v-bottom-navigation v-model="value" color="teal" grow>
-        <v-btn :to="{ name: 'menu' }">
+        <v-btn :to="{ name: 'mealPlanView' }">
           <v-icon>mdi-rice</v-icon>
           식단표
         </v-btn>

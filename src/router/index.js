@@ -1,16 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MenuView from '@/views/MenuView.vue'
+import MealPlanView from '@/views/MealPlanView.vue'
 import ComplaintBoxView from '@/views/ComplaintBoxView.vue'
 import CafeView from '@/views/CafeView.vue'
 import AdminPage from '@/components/AdminPage.vue'
+import UploadMealPlan from '@/components/meal-plan/UploadMealPlan.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'menu',
-      component: MenuView
+      name: 'mealPlanView',
+      component: MealPlanView
     },
     {
       path: '/complaintbox',
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/admin',
       name: 'admin',
       component: AdminPage
+    },
+    {
+      path: '/uploadMealPlan',
+      name: 'uploadMealPlan',
+      component: UploadMealPlan
     }
   ]
 })

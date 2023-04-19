@@ -1,7 +1,7 @@
 <template>
   <div class="complaint-box">
     <!-- page title -->
-    <div class="title has-text-centered">Complaint Box</div>
+    <div class="title has-text-centered text-h4 font-weight-bold">Complaint Box</div>
     <form @submit.prevent="addComplaint">
       <!-- input -->
       <div class="field is-grouped mb-5">
