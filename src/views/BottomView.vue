@@ -1,7 +1,7 @@
 <template>
   <div class="bottomNav">
     <v-layout class="overflow-visible" style="height: 56px">
-      <v-bottom-navigation v-model="value" color="teal" grow>
+      <v-bottom-navigation v-model="value" color="#cc2715" grow>
         <v-btn :to="{ name: 'mealPlanView' }">
           <v-icon>mdi-rice</v-icon>
           식단표

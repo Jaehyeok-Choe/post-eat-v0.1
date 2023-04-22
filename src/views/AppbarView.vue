@@ -1,13 +1,10 @@
 <template>
   <div>
-    <v-app-bar color="teal-darken-4" image="https://picsum.photos/1920/1080?random">
-      <template v-slot:image>
-        <v-img gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"></v-img>
-      </template>
-
-      <template v-slot:prepend> </template>
-      <div class="appbar-name">
-        <v-app-bar-title><v-icon>mdi-post</v-icon> PostEAT</v-app-bar-title>
+    <v-app-bar color="#cc2715">
+      <div class="appbar-name ml-3">
+        <v-btn :to="{ name: 'mealPlanView' }" color="white">
+          <v-app-bar-title><v-icon>mdi-post</v-icon> epostEAT</v-app-bar-title>
+        </v-btn>
       </div>
       <v-spacer></v-spacer>
     </v-app-bar>
@@ -17,26 +14,7 @@
 <script>
 export default {
   data: () => ({
-    drawer: false,
-    group: null,
-    items: [
-      {
-        title: 'Foo',
-        value: 'foo'
-      },
-      {
-        title: 'Bar',
-        value: 'bar'
-      },
-      {
-        title: 'Fizz',
-        value: 'fizz'
-      },
-      {
-        title: 'Buzz',
-        value: 'buzz'
-      }
-    ]
+    drawer: false
   }),
 
   watch: {
