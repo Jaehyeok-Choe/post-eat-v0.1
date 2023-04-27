@@ -17,6 +17,7 @@
               <button
                 class="button is-info"
                 @click.prevent="addComment(), countUpComentView(props.complaintForComment)"
+                :disabled="!newCommentContent"
               >
                 Add
               </button>

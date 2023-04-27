@@ -12,10 +12,22 @@
       >
     </v-row>
     <v-row justify="center" class="mb-15">
-      <v-btn width="200" height="70" density="compact">n/a</v-btn>
+      <SignoutButton />
     </v-row>
     <v-row justify="center" class="mb-5">
       <v-btn width="200" height="70" density="compact">n/a</v-btn>
     </v-row>
   </v-container>
 </template>
+<script setup>
+/*
+  imports
+*/
+// import { useUserStatusStore } from '../stores/userStatus'
+import SignoutButton from './SignoutButton.vue'
+
+/*
+  pinia
+*/
+// const storeUserStatus = useUserStatusStore()
+</script>

@@ -1,7 +1,7 @@
 <template>
   <div class="complaint-box">
     <!-- page title -->
-    <div class="title has-text-centered text-h4 font-weight-bold">Complaint Box</div>
+    <div class="title has-text-centered text-h4 font-weight-bold mt-8">Bamboo Forest</div>
     <form @submit.prevent="addComplaint">
       <!-- input -->
       <div class="field is-grouped mb-5">
@@ -15,7 +15,9 @@
         </p>
         <!-- add button -->
         <p class="control">
-          <button class="button is-info" :disabled="!newComplaintContent">Add</button>
+          <button class="button is-info" :disabled="!newComplaintContent || !storeUserStatus.email">
+            Add
+          </button>
         </p>
       </div>
     </form>
@@ -30,21 +32,17 @@
 */
 
 import { ref } from 'vue'
-import { v4 as uuidv4 } from 'uuid'
 import { collection, addDoc } from 'firebase/firestore'
 import { db } from '@/firebase'
 import Swal from 'sweetalert2'
 import ComplaintCard from '@/components/complaint-box/ComplaintCard.vue'
+import { useUserStatusStore } from '../stores/userStatus'
 
 /*
-  userStatus for footer
+  pinia
 */
-// userStatus: u  일반사용자
-// userStatus: mmy 멤버이면서 본인 데이터일때
-// userStatus: mmn 멤버이면서 본인 데이터가 아닐때
-// userStatus: a  관리자
-const userStatus = ref('')
-userStatus.value = 'mmy'
+
+const storeUserStatus = useUserStatusStore()
 
 /*
   get current date
@@ -81,7 +79,7 @@ const addComplaint = () => {
       star: 0,
       commentView: 0,
       dateCreated: Date.now(),
-      userid: uuidv4(),
+      userid: storeUserStatus.email,
       dateYYYYMMDD: yyyymmdd
     })
   }

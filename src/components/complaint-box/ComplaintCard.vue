@@ -7,10 +7,8 @@
           <div class="column">{{ complaint.content }}</div>
         </div>
         <!-- card footer start: edit / star / comment / delete -->
-        <!-- user status = user -->
-        <footer class="card-footer" v-if="userStatus == 'u'"></footer>
-        <!-- user status = member mine-->
-        <footer class="card-footer" v-else-if="userStatus == 'mmy'">
+        <!-- user status = admin -->
+        <footer class="card-footer" v-if="userStatus == 'admin'">
           <a
             href="#"
             class="card-footer-item"
@@ -27,9 +25,32 @@
             ><v-icon>mdi-delete</v-icon></a
           >
         </footer>
-        <!-- user status = member not mine-->
-        <footer class="card-footer" v-else-if="userStatus == 'mmn'"></footer>
-        <!-- user status = admin -->
+        <!-- user status = member -->
+        <footer class="card-footer" v-else-if="userStatus == 'member'">
+          <a
+            href="#"
+            class="card-footer-item"
+            @click.prevent="editComplaint(complaint.content, complaint.id, complaint.commentView)"
+            v-if="complaint.userid === userEmail"
+            ><v-icon>mdi-pencil</v-icon>
+          </a>
+          <a href="#" class="card-footer-item" @click.prevent="countUpStar(complaint)"
+            ><v-icon>mdi-star-face</v-icon>&nbsp;{{ complaint.star }}</a
+          >
+          <a href="#" class="card-footer-item" @click.prevent="addComment(complaint)"
+            ><v-icon>mdi-message-reply</v-icon>&nbsp;{{ complaint.commentView }}</a
+          >
+          <a
+            href="#"
+            class="card-footer-item"
+            @click.prevent="deleteComplaint(complaint.id)"
+            v-if="complaint.userid === userEmail"
+            ><v-icon>mdi-delete</v-icon></a
+          >
+        </footer>
+        <!-- user status = visitor -->
+        <footer class="card-footer" v-else-if="userStatus == 'visitor'"></footer>
+        <!-- user status = ??? -->
         <footer class="card-footer" v-else></footer>
         <!-- card footer end -->
       </div>
@@ -65,16 +86,19 @@ import {
 import { db } from '@/firebase'
 import Swal from 'sweetalert2'
 import CommentModal from '@/components/complaint-box/CommentModal.vue'
+import { useUserStatusStore } from '../../stores/userStatus'
 
 /*
-  userStatus for footer
+  pinia
 */
-// userStatus: u  일반사용자
-// userStatus: mmy 멤버이면서 본인 데이터일때
-// userStatus: mmn 멤버이면서 본인 데이터가 아닐때
-// userStatus: a  관리자
+
+const storeUserStatus = useUserStatusStore()
+
+const userEmail = ref('')
 const userStatus = ref('')
-userStatus.value = 'mmy'
+
+userEmail.value = storeUserStatus.email
+userStatus.value = storeUserStatus.status
 
 /*
   get current date

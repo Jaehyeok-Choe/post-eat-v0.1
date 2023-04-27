@@ -1,20 +1,4 @@
 <template>
-  <br />
-  <v-file-input
-    label="File input"
-    variant="underlined"
-    accept="image/png, image/jpeg, image/bmp"
-    @change="onFilePicked"
-  ></v-file-input>
-
-  <div v-if="imageUrl">
-    <h1>&nbsp;&nbsp;Image Preview</h1>
-
-    <v-img :src="imageUrl"></v-img><br />
-    <v-btn @click="uploadImg()">upload</v-btn>
-    <br /><br />
-  </div>
-
   <!-- show image -->
   <h1>&nbsp;&nbsp;Image View</h1>
   <v-card>
@@ -42,31 +26,11 @@
 
 <script setup>
 /*
-  import
+  imports
 */
+// import { useRouter } from 'vue-router'
 
-import { ref } from 'vue'
-
-/*
-  get file
-*/
-
-const imageUrl = ref('')
-const image = ref('')
-
-const onFilePicked = (event) => {
-  const files = event.target.files
-  let filename = files[0].name
-  if (filename.lastIndexOf('.') <= 0) {
-    return alert('Please add a valid file!')
-  }
-  const fileReader = new FileReader()
-
-  fileReader.addEventListener('load', () => {
-    imageUrl.value = fileReader.result
-  })
-  fileReader.readAsDataURL(files[0])
-  image.value = files[0]
-}
+// const router = useRouter()
+// router.go()
 </script>
 <style scoped></style>

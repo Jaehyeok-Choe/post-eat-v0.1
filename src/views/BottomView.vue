@@ -14,9 +14,17 @@
           <v-icon>mdi-coffee</v-icon>
           일층카페
         </v-btn>
-        <v-btn :to="{ name: 'admin' }" v-if="adminYn">
+        <v-btn :to="{ name: 'admin' }" v-if="userStatus === 'admin'">
           <v-icon>mdi-cog</v-icon>
           관리자만
+        </v-btn>
+        <v-btn :to="{ name: 'member' }" v-else-if="userStatus === 'member'">
+          <v-icon>mdi-earth</v-icon>
+          마이페이지
+        </v-btn>
+        <v-btn :to="{ name: 'login' }" v-else>
+          <v-icon>mdi-login</v-icon>
+          로그인
         </v-btn>
       </v-bottom-navigation>
     </v-layout>
@@ -24,9 +32,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-// admin test
-const adminYn = ref(true)
+/*
+  imports
+*/
+import { useUserStatusStore } from '../stores/userStatus'
+
+/*
+  pinia
+*/
+const storeUserStatus = useUserStatusStore()
+
+const userStatus = storeUserStatus.status
 </script>
 
 <style scoped>
