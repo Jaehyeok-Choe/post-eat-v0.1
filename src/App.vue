@@ -5,6 +5,7 @@
       <RouterView />
     </v-main>
   </v-app>
+
   <BottomView />
 </template>
 

@@ -13,7 +13,7 @@ export const useUserStatusStore = defineStore({
       let auth = getAuth()
       onAuthStateChanged(auth, (user) => {
         this.email = user.email
-        if (user.email === 'tbeben77@gmail.com') {
+        if (user.email === 'tbeben77@gmail.com' || user.email === 'abcmarket@abc.com') {
           this.status = 'admin'
         } else if (user.email != '') {
           this.status = 'member'

@@ -88,7 +88,18 @@ export default {
       createUserWithEmailAndPassword(getAuth(), values.email, values.password)
         .then((data) => {
           console.log(data)
-          router.push('/')
+          router.push('/login')
+          Swal.fire({
+            title: '회원가입 완료',
+            text: '로그인 페이지로 이동',
+            icon: 'success',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            }
+          })
         })
         .catch((error) => {
           const errorCode = error.code

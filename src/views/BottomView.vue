@@ -16,7 +16,7 @@
         </v-btn>
         <v-btn :to="{ name: 'admin' }" v-if="userStatus === 'admin'">
           <v-icon>mdi-cog</v-icon>
-          관리자만
+          관리자
         </v-btn>
         <v-btn :to="{ name: 'member' }" v-else-if="userStatus === 'member'">
           <v-icon>mdi-earth</v-icon>
