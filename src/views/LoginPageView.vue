@@ -75,10 +75,14 @@ const submit = handleSubmit((values) => {
       // get user email from sotres/userStatus.js
       storeUserStatus.setUser()
 
-      // router.push('/member')
-      location.href = '/member'
-
-      // ...
+      const userEmail = user.email
+      const adminOne = 'tbeben77@gmail.com'
+      const adminTwo = 'a'
+      if (userEmail === adminOne || userEmail === adminTwo) {
+        location.href = '/admin'
+      } else {
+        location.href = '/member'
+      }
     })
     .catch((error) => {
       const errorCode = error.code

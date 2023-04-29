@@ -37,7 +37,7 @@ onMounted(() => {
 const handleSignOut = () => {
   storeUserStatus.resetUser()
   signOut(auth).then(() => {
-    location.href = '/'
+    location.href = '/login'
   })
 }
 </script>

@@ -9,6 +9,12 @@ import SignupPageView from '@/views/SignupPageView.vue'
 import MyPageView from '@/views/MyPageView.vue'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import Swal from 'sweetalert2'
+import { useUserStatusStore } from '../stores/userStatus'
+import NotFoundView from '@/views/NotFoundView.vue'
+
+/*
+  router
+*/
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +40,17 @@ const router = createRouter({
       component: AdminPage,
       meta: {
         requiresAuth: true
+      },
+      beforeEnter: (to, from, next) => {
+        const storeUserStatus = useUserStatusStore()
+        const userEmail = storeUserStatus.email
+        const adminOne = 'tbeben77@gmail.com'
+        const adminTwo = 'abcmarket@abc.com'
+        if (userEmail === adminOne || userEmail === adminTwo) {
+          next()
+        } else {
+          next('/404')
+        }
       }
     },
     {
@@ -61,6 +78,11 @@ const router = createRouter({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: '/404',
+      component: NotFoundView
     }
   ]
 })
