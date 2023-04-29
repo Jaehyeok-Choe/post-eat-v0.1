@@ -1,6 +1,6 @@
 <template lang="">
   <!-- complaint card -->
-  <div class="card mb-5" v-for="complaint in complaints" :key="complaint.id">
+  <div class="card mb-5" v-for="complaint in complaints" :key="complaint.id" id="card">
     <div class="card-content">
       <div class="content">
         <div class="columns is-mobile is-vcentered">

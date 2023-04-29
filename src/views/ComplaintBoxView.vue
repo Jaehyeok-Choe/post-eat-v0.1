@@ -1,9 +1,7 @@
 <template>
   <div class="complaint-box">
     <!-- page title -->
-    <div class="title has-text-centered text-h5 font-weight-bold mt-8">
-      <v-icon>mdi-lock-check-outline</v-icon> Bamboo Forest <v-icon>mdi-lock-check</v-icon>
-    </div>
+    <div class="title has-text-centered text-h3 font-weight-bold mt-8">Bamboo Forest</div>
     <form @submit.prevent="addComplaint">
       <!-- input -->
       <div class="field is-grouped mb-5">

@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" width="400" persistent>
-      <v-card>
+    <v-dialog v-model="dialog" width="400">
+      <v-card v-click-outside="closeModal">
         <v-card-title>
           <span class="text-h5">COMMENT</span>
         </v-card-title>
@@ -47,9 +47,10 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
+            id="closeBtn"
             color="green-darken-1"
             variant="text"
-            @click="$emit('changeCommentModalStatus'), (dialog = false)"
+            @click="$emit('changeCommentModalStatus')"
           >
             close
           </v-btn>
@@ -99,6 +100,12 @@ const props = defineProps({
     type: Object
   }
 })
+
+// dialog 백그라운드 클릭 시, 아래 함수를 실행하여
+// ComplaintCard.vue의 commentModal 의 상태를 false로 변경한다.
+const closeModal = () => {
+  document.getElementById('closeBtn').click()
+}
 
 /*
   emit
