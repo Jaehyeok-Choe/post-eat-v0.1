@@ -1,20 +1,29 @@
 <template>
-  <div class="text-center text-h4 font-weight-bold mt-7">Upload Meal Plan</div>
-  <v-file-input
-    class="mt-5"
-    label="File input"
-    variant="underlined"
-    accept="image/png, image/jpeg, image/bmp"
-    @change="onFilePicked"
-  ></v-file-input>
+  <v-card class="mx-auto mt-15" max-width="344" variant="outlined">
+    <v-card-item>
+      <div>
+        <div class="text-overline mb-1">WELCOME</div>
+        <div class="text-h6 mb-1">Meal Plan</div>
+        <div class="text-caption">Upload Meal-plan</div>
+      </div>
+    </v-card-item>
+    <v-card-item>
+      <v-file-input
+        class="mt-5"
+        label="File input"
+        variant="underlined"
+        accept="image/png, image/jpeg, image/bmp"
+        @change="onFilePicked"
+      ></v-file-input>
 
-  <div v-if="imageUrl" class="text-center">
-    <h1 class="mb-2 font-italic">- Image Preview -</h1>
+      <div v-if="imageUrl" class="text-center">
+        <h1 class="mb-2 font-italic">- Image Preview -</h1>
 
-    <v-img :src="imageUrl"></v-img><br />
-    <v-btn @click="uploadImg()" color="info">upload</v-btn>
-    <br /><br />
-  </div>
+        <v-img :src="imageUrl"></v-img><br />
+        <v-btn @click="uploadImg()" color="info">upload</v-btn>
+        <br /><br /></div
+    ></v-card-item>
+  </v-card>
 </template>
 
 <script setup>
@@ -55,10 +64,10 @@ const uploadImg = () => {
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
+    confirmButtonText: 'Yes, do it!'
   }).then((result) => {
     if (result.isConfirmed) {
-      Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
+      Swal.fire('Uploaded!', 'Your file has been uploaded.', 'success')
     }
   })
 }

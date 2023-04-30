@@ -1,149 +1,94 @@
 <template>
-  <form>
-    <v-text-field
-      v-model="state.name"
-      :error-messages="v$.name.$errors.map((e) => e.$message)"
-      :counter="10"
-      label="Name"
-      required
-      @input="v$.name.$touch"
-      @blur="v$.name.$touch"
-    ></v-text-field>
+  <v-card class="mx-auto mt-15" max-width="344" variant="outlined">
+    <v-card-item>
+      <div>
+        <div class="text-overline mb-1">WELCOME</div>
+        <div class="text-h6 mb-1">Cafe Menu</div>
+        <div class="text-caption">Upload menu</div>
+      </div>
+    </v-card-item>
+    <v-card-item>
+      <form @submit.prevent="submit">
+        <v-text-field
+          v-model="name.value.value"
+          :counter="20"
+          :error-messages="name.errorMessage.value"
+          label="Name"
+        ></v-text-field>
 
-    <v-text-field
-      v-model="state.email"
-      :error-messages="v$.email.$errors.map((e) => e.$message)"
-      label="E-mail"
-      required
-      @input="v$.email.$touch"
-      @blur="v$.email.$touch"
-    ></v-text-field>
+        <v-text-field
+          type="number"
+          v-model="price.value.value"
+          :counter="5"
+          :error-messages="price.errorMessage.value"
+          label="Price"
+        ></v-text-field>
 
-    <v-select
-      v-model="state.select"
-      :items="items"
-      :error-messages="v$.select.$errors.map((e) => e.$message)"
-      label="Item"
-      required
-      @change="v$.select.$touch"
-      @blur="v$.select.$touch"
-    ></v-select>
-    <!-- buttons -->
-    <v-container>
-      <v-row justify="center">
-        <v-col cols="auto">
-          <v-btn @click="v$.$validate" type="submit" class="mt-2 mb-2">submit</v-btn>
-        </v-col>
-        <v-col cols="auto">
-          <v-btn @click="clear" class="mt-2">clear</v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
-  </form>
+        <v-select
+          v-model="selectMenu.value.value"
+          :items="menuItems"
+          :error-messages="selectMenu.errorMessage.value"
+          label="Select menu"
+        ></v-select>
+
+        <v-select
+          v-model="selectSize.value.value"
+          :items="sizeItems"
+          :error-messages="selectSize.errorMessage.value"
+          label="Select size"
+        ></v-select>
+
+        <v-card-actions class="justify-center">
+          <v-btn class="me-4 mb-5" type="submit" color="success"> Add </v-btn>
+          <v-btn @click="handleReset" class="mb-5" color="warning"> clear </v-btn>
+        </v-card-actions>
+      </form>
+    </v-card-item>
+  </v-card>
 </template>
 <script>
-import { reactive, ref } from 'vue'
-import { useVuelidate } from '@vuelidate/core'
-import { email, required } from '@vuelidate/validators'
+import { ref } from 'vue'
+import { useField, useForm } from 'vee-validate'
 
 export default {
   setup() {
-    const initialState = {
-      name: '',
-      email: '',
-      select: null
-    }
+    const { handleSubmit, handleReset } = useForm({
+      validationSchema: {
+        name(value) {
+          if (value?.length >= 2) return true
 
-    const state = reactive({
-      ...initialState
+          return 'Name needs to be at least 2 characters.'
+        },
+        price(value) {
+          if (value?.length > 2 && value?.length < 6) return true
+
+          return 'Price number needs to be at least 3 digits.'
+        },
+        selectMenu(value) {
+          if (value) return true
+
+          return 'Select an item.'
+        },
+        selectSize(value) {
+          if (value) return true
+
+          return 'Select an item.'
+        }
+      }
+    })
+    const name = useField('name')
+    const price = useField('price')
+    const selectMenu = useField('selectMenu')
+    const selectSize = useField('selectSize')
+
+    const menuItems = ref(['COFFEE', 'JUICE', 'TEA', 'ELSE'])
+    const sizeItems = ref(['S', 'R', 'L'])
+
+    const submit = handleSubmit((values) => {
+      alert(JSON.stringify(values, null, 2))
     })
 
-    const items = ref(['coffee', 'tea', 'juice', 'else'])
-
-    const rules = {
-      name: { required },
-      email: { required, email },
-      select: { required },
-      items: { required }
-    }
-
-    const v$ = useVuelidate(rules, state)
-
-    function clear() {
-      v$.value.$reset()
-
-      for (const [key, value] of Object.entries(initialState)) {
-        state[key] = value
-      }
-    }
-
-    return { state, items, clear, v$ }
+    return { name, price, selectMenu, selectSize, menuItems, sizeItems, submit, handleReset }
   }
 }
 </script>
-<!-- <template>
-  <div class="text-center text-h4 font-weight-bold mt-7">Upload Cafe Menu</div>
-  <v-file-input
-    class="mt-5"
-    label="File input"
-    variant="underlined"
-    accept="image/png, image/jpeg, image/bmp"
-    @change="onFilePicked"
-  ></v-file-input>
-
-  <div v-if="imageUrl" class="text-center">
-    <h1 class="mb-2 font-italic">- Image Preview -</h1>
-
-    <v-img :src="imageUrl"></v-img><br />
-    <v-btn @click="uploadImg()" color="info">upload</v-btn>
-    <br /><br />
-  </div>
-</template>
-
-<script setup>
-/*
-  import
-*/
-
-import { ref } from 'vue'
-import Swal from 'sweetalert2'
-
-const imageUrl = ref('')
-const image = ref('')
-
-const onFilePicked = (event) => {
-  const files = event.target.files
-  let filename = files[0].name
-  if (filename.lastIndexOf('.') <= 0) {
-    return alert('Please add a valid file!')
-  }
-  const fileReader = new FileReader()
-
-  fileReader.addEventListener('load', () => {
-    imageUrl.value = fileReader.result
-  })
-  fileReader.readAsDataURL(files[0])
-  image.value = files[0]
-}
-
-/*
-  upload image
-*/
-
-const uploadImg = () => {
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
-    }
-  })
-}
-</script>
-<style scoped></style> -->
