@@ -17,7 +17,15 @@
     </v-card-item>
 
     <v-card-actions>
-      <v-btn block class="me-4 mt-15" type="submit" color="red" variant="flat" size="x-large">
+      <v-btn
+        block
+        outlined
+        class="me-4 mt-15"
+        type="submit"
+        color="#cc2715"
+        variant="flat"
+        size="x-large"
+      >
         <SignoutButton />
       </v-btn>
     </v-card-actions>

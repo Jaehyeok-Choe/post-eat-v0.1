@@ -2,14 +2,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MealPlanView from '@/views/MealPlanView.vue'
 import ComplaintBoxView from '@/views/ComplaintBoxView.vue'
 import CafeView from '@/views/CafeView.vue'
-import AdminPage from '@/components/AdminPage.vue'
+import AdminPageView from '@/views/AdminPageView.vue'
 import UploadMealPlan from '@/components/meal-plan/UploadMealPlan.vue'
-import LoginPageView from '@/views/LoginPageView.vue'
+import UploadCafeMenu from '@/components/cafe-menu/UploadCafeMenu.vue'
 import SignupPageView from '@/views/SignupPageView.vue'
+import LoginPageView from '@/views/LoginPageView.vue'
 import MyPageView from '@/views/MyPageView.vue'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import Swal from 'sweetalert2'
 import { useUserStatusStore } from '../stores/userStatus'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import NotFoundView from '@/views/NotFoundView.vue'
 
 /*
@@ -37,7 +38,7 @@ const router = createRouter({
     {
       path: '/admin',
       name: 'admin',
-      component: AdminPage,
+      component: AdminPageView,
       meta: {
         requiresAuth: true
       },
@@ -79,6 +80,15 @@ const router = createRouter({
         requiresAuth: true
       }
     },
+    {
+      path: '/uploadCafeMenu',
+      name: 'uploadCafeMenu',
+      component: UploadCafeMenu,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
     {
       path: '/:pathMatch(.*)*',
       name: '/404',

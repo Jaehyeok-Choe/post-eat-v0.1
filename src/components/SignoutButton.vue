@@ -1,6 +1,14 @@
 <template lang="">
   <div>
-    <v-btn @click="handleSignOut" v-if="isLoggedIn">Sign out</v-btn>
+    <v-btn
+      @click="handleSignOut"
+      width="200"
+      height="70"
+      density="compact"
+      x-large
+      v-if="isLoggedIn"
+      >Sign out</v-btn
+    >
   </div>
 </template>
 <script setup>
