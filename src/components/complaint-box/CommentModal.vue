@@ -35,6 +35,7 @@
                       @click.prevent="
                         deleteComment(comment.id), countDownComentView(props.complaintForComment)
                       "
+                      v-if="userEmail === comment.userid || userStatus === 'admin'"
                     >
                       &cross;
                     </button>
@@ -79,8 +80,21 @@ import {
   where
 } from 'firebase/firestore'
 import { db } from '@/firebase'
-import { v4 as uuidv4 } from 'uuid'
+// import { v4 as uuidv4 } from 'uuid'
 // import Swal from 'sweetalert2'
+import { useUserStatusStore } from '../../stores/userStatus'
+
+/*
+  pinia
+*/
+
+const storeUserStatus = useUserStatusStore()
+
+const userEmail = ref('')
+const userStatus = ref('')
+
+userEmail.value = storeUserStatus.email
+userStatus.value = storeUserStatus.status
 
 /*
   props
@@ -189,7 +203,7 @@ const addComment = () => {
     content: newCommentContent.value,
     complaintId: props.complaintId,
     dateCreated: Date.now(),
-    userid: uuidv4(),
+    userid: userEmail.value,
     dateYYYYMMDD: yyyymmdd
   })
   newCommentContent.value = ''
