@@ -1,15 +1,15 @@
 <template>
   <!-- show image -->
-  <h1>&nbsp;&nbsp;Image View</h1>
+  <h1>&nbsp;&nbsp;Enjoy your meal :)</h1>
   <v-card>
     <v-img
-      src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
+      :src="url"
       class="align-end"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-      height="200px"
+      height="700px"
       cover
     >
-      <v-card-title class="text-white">test</v-card-title>
+      <v-card-title class="text-white"></v-card-title>
     </v-img>
 
     <v-card-actions>
@@ -24,13 +24,21 @@
   </v-card>
 </template>
 
-<script setup>
-/*
-  imports
-*/
-// import { useRouter } from 'vue-router'
+<script>
+import { storage } from '../firebase'
+import { ref, getDownloadURL } from 'firebase/storage'
 
-// const router = useRouter()
-// router.go()
+export default {
+  data: () => {
+    return {
+      url: '',
+      path: 'mealPlan/meal-plan.jpg'
+    }
+  },
+
+  mounted() {
+    getDownloadURL(ref(storage, this.path)).then((download_url) => (this.url = download_url))
+  }
+}
 </script>
 <style scoped></style>
