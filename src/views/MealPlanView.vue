@@ -17,13 +17,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
 
-        나를 배부르게 하는 것들이, 나를 파괴한다<v-btn
-          size="small"
-          color="surface-variant"
-          variant="text"
-          icon="mdi-heart"
-        ></v-btn
-        >777
+        ENJOY YOUR MEAL :)
       </v-card-actions>
     </v-card>
   </div>
