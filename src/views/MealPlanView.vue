@@ -8,7 +8,7 @@
         :src="url"
         class="align-end mt-5"
         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-        height="570px"
+        height="500px"
         cover
       >
         <v-card-title class="text-white"></v-card-title>
