@@ -2,7 +2,7 @@
   <div class="mealPlan">
     <v-card class="mt-5" flat>
       <v-title
-        ><center>오늘은 {{ getYYYYMMDD() }} 입니다</center></v-title
+        ><center>오늘은 {{ getYYYYMMDD() }} {{ getDayOfWeekInKorea() }}" 입니다</center></v-title
       >
       <v-img
         :src="url"
@@ -48,27 +48,14 @@ export default {
       this.year = this.date.getFullYear()
       this.month = ('0' + (this.date.getMonth() + 1)).slice(-2)
       this.day = ('0' + this.date.getDate()).slice(-2)
-
-      if (this.day === '00') {
-        this.dayInKorean = '일요일'
-      } else if (this.day === '01') {
-        this.dayInKorean = '월요일'
-      } else if (this.day === '02') {
-        this.dayInKorean = '화요일'
-      } else if (this.day === '03') {
-        this.dayInKorean = '수요일'
-      } else if (this.day === '04') {
-        this.dayInKorean = '목요일'
-      } else if (this.day === '05') {
-        this.dayInKorean = '금요일'
-      } else if (this.day === '06') {
-        this.dayInKorean = '토요일'
-      }
-
-      console.log(this.dayInKorean)
-      this.yyyymmdd =
-        '"' + this.year + '.' + this.month + '.' + this.day + ' ' + this.dayInKorean + '"'
+      this.yyyymmdd = '"' + this.year + '.' + this.month + '.' + this.day
       return this.yyyymmdd
+    },
+    getDayOfWeekInKorea() {
+      let day = new Date()
+      const weekday = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일']
+      this.dayInKorean = weekday[day.getDay()]
+      return this.dayInKorean
     }
   }
 }
